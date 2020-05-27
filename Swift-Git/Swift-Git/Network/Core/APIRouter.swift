@@ -62,7 +62,7 @@ internal enum APIRouter: URLRequestConvertible {
     private var parameters: Parameters? {
         switch self {
         case .repositories(let language, let sort):
-            return ["q": "language:\(language)",
+            return [Constants.Parameters.q: "language:\(language)",
                     Constants.Parameters.sort: sort]
 
         }

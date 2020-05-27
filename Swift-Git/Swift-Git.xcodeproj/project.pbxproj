@@ -24,6 +24,12 @@
 		F5B5CD9F247EA4F4009E1061 /* RepositoryPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CD9E247EA4F4009E1061 /* RepositoryPayload.swift */; };
 		F5B5CDA1247EA723009E1061 /* ItemPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDA0247EA723009E1061 /* ItemPayload.swift */; };
 		F5B5CDA3247EA7C0009E1061 /* OwnerPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDA2247EA7C0009E1061 /* OwnerPayload.swift */; };
+		F5B5CDA8247ECFC5009E1061 /* RepositoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDA7247ECFC5009E1061 /* RepositoryWorker.swift */; };
+		F5B5CDAC247ED092009E1061 /* RepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDAB247ED092009E1061 /* RepositoriesViewModel.swift */; };
+		F5B5CDB0247ED117009E1061 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDAF247ED117009E1061 /* Dynamic.swift */; };
+		F5B5CDB4247ED224009E1061 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDB3247ED224009E1061 /* Repository.swift */; };
+		F5B5CDB6247ED296009E1061 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDB5247ED296009E1061 /* Item.swift */; };
+		F5B5CDB8247ED342009E1061 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDB7247ED342009E1061 /* Owner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +68,12 @@
 		F5B5CD9E247EA4F4009E1061 /* RepositoryPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryPayload.swift; sourceTree = "<group>"; };
 		F5B5CDA0247EA723009E1061 /* ItemPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPayload.swift; sourceTree = "<group>"; };
 		F5B5CDA2247EA7C0009E1061 /* OwnerPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerPayload.swift; sourceTree = "<group>"; };
+		F5B5CDA7247ECFC5009E1061 /* RepositoryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryWorker.swift; sourceTree = "<group>"; };
+		F5B5CDAB247ED092009E1061 /* RepositoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewModel.swift; sourceTree = "<group>"; };
+		F5B5CDAF247ED117009E1061 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
+		F5B5CDB3247ED224009E1061 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		F5B5CDB5247ED296009E1061 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		F5B5CDB7247ED342009E1061 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +139,8 @@
 		F5B5CD66247E8A6D009E1061 /* Swift-Git */ = {
 			isa = PBXGroup;
 			children = (
+				F5B5CDAD247ED0FA009E1061 /* Commons */,
+				F5B5CDA4247ECF69009E1061 /* Features */,
 				F5B5CD8B247E9649009E1061 /* Network */,
 				F5B5CD8A247E8B18009E1061 /* Resources */,
 				F5B5CD89247E8AC5009E1061 /* AppDelegate */,
@@ -209,6 +223,74 @@
 			children = (
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		F5B5CDA4247ECF69009E1061 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				F5B5CDA5247ECF7B009E1061 /* Search Repository */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		F5B5CDA5247ECF7B009E1061 /* Search Repository */ = {
+			isa = PBXGroup;
+			children = (
+				F5B5CDB1247ED144009E1061 /* Model */,
+				F5B5CDAA247ED077009E1061 /* View */,
+				F5B5CDA9247ED062009E1061 /* ViewModel */,
+				F5B5CDA6247ECFAE009E1061 /* Worker */,
+			);
+			path = "Search Repository";
+			sourceTree = "<group>";
+		};
+		F5B5CDA6247ECFAE009E1061 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				F5B5CDA7247ECFC5009E1061 /* RepositoryWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		F5B5CDA9247ED062009E1061 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F5B5CDAB247ED092009E1061 /* RepositoriesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F5B5CDAA247ED077009E1061 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F5B5CDAD247ED0FA009E1061 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				F5B5CDAE247ED10F009E1061 /* Dynamic */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		F5B5CDAE247ED10F009E1061 /* Dynamic */ = {
+			isa = PBXGroup;
+			children = (
+				F5B5CDAF247ED117009E1061 /* Dynamic.swift */,
+			);
+			path = Dynamic;
+			sourceTree = "<group>";
+		};
+		F5B5CDB1247ED144009E1061 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F5B5CDB3247ED224009E1061 /* Repository.swift */,
+				F5B5CDB5247ED296009E1061 /* Item.swift */,
+				F5B5CDB7247ED342009E1061 /* Owner.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,15 +481,21 @@
 			files = (
 				F5B5CD9B247E9F88009E1061 /* APIRepositoryClient.swift in Sources */,
 				F5B5CD95247E970E009E1061 /* Constants.swift in Sources */,
+				F5B5CDB4247ED224009E1061 /* Repository.swift in Sources */,
 				F5B5CD9F247EA4F4009E1061 /* RepositoryPayload.swift in Sources */,
+				F5B5CDB6247ED296009E1061 /* Item.swift in Sources */,
+				F5B5CDB0247ED117009E1061 /* Dynamic.swift in Sources */,
 				F5B5CD97247E9768009E1061 /* APIRouter.swift in Sources */,
 				F5B5CD6C247E8A6D009E1061 /* ViewController.swift in Sources */,
 				F5B5CD93247E96E1009E1061 /* APIError.swift in Sources */,
 				F5B5CD91247E96C3009E1061 /* Typealias.swift in Sources */,
+				F5B5CDAC247ED092009E1061 /* RepositoriesViewModel.swift in Sources */,
 				F5B5CDA1247EA723009E1061 /* ItemPayload.swift in Sources */,
 				F5B5CDA3247EA7C0009E1061 /* OwnerPayload.swift in Sources */,
 				F5B5CD9D247E9FB1009E1061 /* API.swift in Sources */,
+				F5B5CDB8247ED342009E1061 /* Owner.swift in Sources */,
 				F5B5CD68247E8A6D009E1061 /* AppDelegate.swift in Sources */,
+				F5B5CDA8247ECFC5009E1061 /* RepositoryWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
