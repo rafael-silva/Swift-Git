@@ -24,6 +24,6 @@ struct ItemPayload: Decodable {
     let open_issues_count: Int
     let master_branch: String?
     let default_branch: String
-    let score: Int
+    let score: Double
     
 }
