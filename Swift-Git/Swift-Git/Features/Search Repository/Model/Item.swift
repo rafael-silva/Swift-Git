@@ -4,7 +4,7 @@ struct Item {
     let name: String
     let fullName: String
     let owner: Owner
-    let score: Int
+    let score: Double
     
 }
 

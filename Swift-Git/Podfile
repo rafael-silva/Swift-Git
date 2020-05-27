@@ -5,6 +5,7 @@ target 'Swift-Git' do
     inhibit_all_warnings!
     
     pod 'Alamofire', '5'
+    pod 'SnapKit', '5'
     
     target 'Swift-GitTests' do
         inherit! :complete
