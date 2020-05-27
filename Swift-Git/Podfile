@@ -1,0 +1,15 @@
+platform :ios, '11.0'
+
+target 'Swift-Git' do
+    use_frameworks!
+    inhibit_all_warnings!
+    
+    pod 'Alamofire', '5'
+    
+    target 'Swift-GitTests' do
+        inherit! :complete
+        pod 'Nimble'
+        pod 'Quick'
+    end
+end
+
