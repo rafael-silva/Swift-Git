@@ -13,6 +13,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let api: APIRepositoryProviderProtocol = API()
+        api.repositories(language: "swift", sort: "stars") { response in 
+             switch response {
+             case .success(let value):
+                print(value)
+             case .failure(let error):
+                switch error {
+                case ApiError.conflict:
+                    print("Conflict error")
+                case ApiError.forbidden:
+                    print("Forbidden error")
+                case ApiError.notFound:
+                    print("Not found error")
+                default:
+                    print("Unknown error:", error)
+                }
+            }
+        }
+
     }
 
 
