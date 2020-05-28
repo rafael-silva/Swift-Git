@@ -24,6 +24,7 @@ final class RepositoriesViewController: UIViewController {
     }()
     
     let viewModel: RepositoriesViewModelProtocol
+    
     private lazy var repositories: [Item] = []
     
     //MARK: Init
@@ -44,6 +45,11 @@ final class RepositoriesViewController: UIViewController {
         super.viewDidLoad()
         
         tablewView.dataSource = self
+        tablewView.refreshControl = UIRefreshControl()
+        tablewView.refreshControl?.addTarget(self, action:
+            #selector(handleRefreshControl),
+                                             for: .valueChanged)
+        
         view.backgroundColor = UIColor(red: 26/255, green: 92/255, blue: 246/255, alpha: 1)
         
         setupTableView()
@@ -61,6 +67,14 @@ final class RepositoriesViewController: UIViewController {
         viewModel.error.bind { [weak self] error in
             guard let self = self, let error = error else { return }
             //            self.presentAlert(error, title: "Ops!")
+        }
+    }
+    
+    @objc private func handleRefreshControl() {
+        viewModel.loadRepositories()
+        
+        DispatchQueue.main.async {
+            self.tablewView.refreshControl?.endRefreshing()
         }
     }
     
