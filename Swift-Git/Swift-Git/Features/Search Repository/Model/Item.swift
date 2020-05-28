@@ -14,3 +14,12 @@ extension Item {
     }
 }
 
+extension Item: Equatable {
+    static func == (lhs: Item, rhs: Item) -> Bool {
+        return lhs.name == rhs.name &&
+        lhs.fullName == rhs.fullName &&
+        lhs.owner == rhs.owner &&
+        lhs.score == rhs.score
+    }
+}
+

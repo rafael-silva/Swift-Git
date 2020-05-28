@@ -6,6 +6,7 @@ struct Constants {
         static let language = "language"
         static let sort = "sort"
         static let q = "q"
+        static let page = "page"
 
     }
     

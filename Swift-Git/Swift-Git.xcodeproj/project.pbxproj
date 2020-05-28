@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		29B331334A8804D9D0016A83 /* Pods_Swift_Git.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0F7B14922E479000B36C06 /* Pods_Swift_Git.framework */; };
 		4795BD28CE96E0F51F0140BE /* Pods_Swift_Git_Swift_GitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC5C7A3E88BD640073E6F65 /* Pods_Swift_Git_Swift_GitTests.framework */; };
+		F530D2F22480022A00D4FB5B /* RepositoryCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530D2F12480022A00D4FB5B /* RepositoryCellViewModelTests.swift */; };
 		F5B5CD68247E8A6D009E1061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CD67247E8A6D009E1061 /* AppDelegate.swift */; };
 		F5B5CD6C247E8A6D009E1061 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CD6B247E8A6D009E1061 /* ViewController.swift */; };
 		F5B5CD6F247E8A6D009E1061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5B5CD6D247E8A6D009E1061 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		F5B5CDC8247F0274009E1061 /* UImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDC7247F0274009E1061 /* UImageLoader.swift */; };
 		F5B5CDCB247F02BD009E1061 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDCA247F02BD009E1061 /* ImageLoader.swift */; };
 		F5B5CDCE247F03E2009E1061 /* UImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDCD247F03E2009E1061 /* UImageViewExtension.swift */; };
+		F5B5CDD0247F3FEB009E1061 /* RepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CDCF247F3FEB009E1061 /* RepositoriesViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,7 @@
 		6BDF4A2CEFA4CCDDEFD546DD /* Pods-Swift-Git.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-Git.debug.xcconfig"; path = "Target Support Files/Pods-Swift-Git/Pods-Swift-Git.debug.xcconfig"; sourceTree = "<group>"; };
 		75E43CFF1B0EFB311A228E26 /* Pods-Swift-Git.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-Git.release.xcconfig"; path = "Target Support Files/Pods-Swift-Git/Pods-Swift-Git.release.xcconfig"; sourceTree = "<group>"; };
 		DD0F7B14922E479000B36C06 /* Pods_Swift_Git.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_Git.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F530D2F12480022A00D4FB5B /* RepositoryCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCellViewModelTests.swift; sourceTree = "<group>"; };
 		F5B5CD64247E8A6D009E1061 /* Swift-Git.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-Git.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5B5CD67247E8A6D009E1061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5B5CD6B247E8A6D009E1061 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 		F5B5CDC7247F0274009E1061 /* UImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UImageLoader.swift; sourceTree = "<group>"; };
 		F5B5CDCA247F02BD009E1061 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		F5B5CDCD247F03E2009E1061 /* UImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UImageViewExtension.swift; sourceTree = "<group>"; };
+		F5B5CDCF247F3FEB009E1061 /* RepositoriesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,8 @@
 			children = (
 				F5B5CD7E247E8A6E009E1061 /* Swift_GitTests.swift */,
 				F5B5CD80247E8A6E009E1061 /* Info.plist */,
+				F5B5CDCF247F3FEB009E1061 /* RepositoriesViewModelTests.swift */,
+				F530D2F12480022A00D4FB5B /* RepositoryCellViewModelTests.swift */,
 			);
 			path = "Swift-GitTests";
 			sourceTree = "<group>";
@@ -563,6 +569,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5B5CDD0247F3FEB009E1061 /* RepositoriesViewModelTests.swift in Sources */,
+				F530D2F22480022A00D4FB5B /* RepositoryCellViewModelTests.swift in Sources */,
 				F5B5CD7F247E8A6E009E1061 /* Swift_GitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

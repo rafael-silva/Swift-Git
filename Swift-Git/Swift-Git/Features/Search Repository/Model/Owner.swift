@@ -13,3 +13,11 @@ extension Owner {
     }
 }
 
+extension Owner: Equatable {
+    static func == (lhs: Owner, rhs: Owner) -> Bool {
+        return lhs.login == rhs.login &&
+        lhs.avatarUrl == rhs.avatarUrl
+    }
+}
+
+
