@@ -15,7 +15,6 @@
 		F5B5CD6F247E8A6D009E1061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5B5CD6D247E8A6D009E1061 /* Main.storyboard */; };
 		F5B5CD71247E8A6E009E1061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5B5CD70247E8A6E009E1061 /* Assets.xcassets */; };
 		F5B5CD74247E8A6E009E1061 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5B5CD72247E8A6E009E1061 /* LaunchScreen.storyboard */; };
-		F5B5CD7F247E8A6E009E1061 /* Swift_GitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CD7E247E8A6E009E1061 /* Swift_GitTests.swift */; };
 		F5B5CD91247E96C3009E1061 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CD90247E96C2009E1061 /* Typealias.swift */; };
 		F5B5CD93247E96E1009E1061 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CD92247E96E1009E1061 /* APIError.swift */; };
 		F5B5CD95247E970E009E1061 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CD94247E970E009E1061 /* Constants.swift */; };
@@ -67,7 +66,6 @@
 		F5B5CD73247E8A6E009E1061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5B5CD75247E8A6E009E1061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5B5CD7A247E8A6E009E1061 /* Swift-GitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swift-GitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5B5CD7E247E8A6E009E1061 /* Swift_GitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_GitTests.swift; sourceTree = "<group>"; };
 		F5B5CD80247E8A6E009E1061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5B5CD90247E96C2009E1061 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		F5B5CD92247E96E1009E1061 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 		F5B5CD7D247E8A6E009E1061 /* Swift-GitTests */ = {
 			isa = PBXGroup;
 			children = (
-				F5B5CD7E247E8A6E009E1061 /* Swift_GitTests.swift */,
 				F5B5CD80247E8A6E009E1061 /* Info.plist */,
 				F5B5CDCF247F3FEB009E1061 /* RepositoriesViewModelTests.swift */,
 				F530D2F12480022A00D4FB5B /* RepositoryCellViewModelTests.swift */,
@@ -571,7 +568,6 @@
 			files = (
 				F5B5CDD0247F3FEB009E1061 /* RepositoriesViewModelTests.swift in Sources */,
 				F530D2F22480022A00D4FB5B /* RepositoryCellViewModelTests.swift in Sources */,
-				F5B5CD7F247E8A6E009E1061 /* Swift_GitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
