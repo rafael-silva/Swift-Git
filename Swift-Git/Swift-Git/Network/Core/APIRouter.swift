@@ -5,7 +5,7 @@ internal enum APIRouter: URLRequestConvertible {
     
     //The endpoint name we'll call later
     
-    case repositories(language: String, sort: String)
+    case repositories(language: String, sort: String, page: Int)
     
     //MARK: - URLRequestConvertible
     
@@ -61,9 +61,10 @@ internal enum APIRouter: URLRequestConvertible {
     
     private var parameters: Parameters? {
         switch self {
-        case .repositories(let language, let sort):
+        case .repositories(let language, let sort, let page):
             return [Constants.Parameters.q: "language:\(language)",
-                    Constants.Parameters.sort: sort]
+                    Constants.Parameters.sort: sort,
+                    Constants.Parameters.page: page]
 
         }
     }
