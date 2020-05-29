@@ -1,7 +1,8 @@
 import UIKit
-//import CommonStack
 
 final class RepositoryCell: UITableViewCell {
+    
+    // MARK: Views
     
     private var containerView: UIView = {
         let view = UIView()
@@ -59,6 +60,7 @@ final class RepositoryCell: UITableViewCell {
         return imageView
     }()
     
+    private var indicatorView = UIActivityIndicatorView()
     
     private var viewModel: RepositoryCellViewModelProtocol?
     
@@ -72,6 +74,7 @@ final class RepositoryCell: UITableViewCell {
         selectionStyle = .none
         
         setupContainerView()
+        setupActivityIndicataro()
         setupIconImage()
         setupRepositoryTitleLabel()
         setupOwnerAvatarImage()
@@ -99,68 +102,105 @@ final class RepositoryCell: UITableViewCell {
         repositoryStarsLabel.text = nil
         ownerNameLabel.text = nil
         repositoryIconImage.image = nil
-
         ownerAvatarImage.cancelImageLoad()
     }
     
-    //MARK: Public Apis
+    //MARK: - Public Apis
     
+    //MARK: Configure views
+
     func configure(viewModel: RepositoryCellViewModelProtocol) {
         self.viewModel = viewModel
         setupBinds()
     }
     
-    //MARK: Private Apis
+    //MARK: - Private Apis
     
+    //MARK: - Binds
+
     private func setupBinds() {
         
         viewModel?.repositoryTitle.bindAndFire { [weak self] title in
             guard let self = self else { return }
+            
             self.repositoryTitleLabel.text = title
         }
         
         viewModel?.repositoryIcon.bindAndFire { [weak self] image in
             guard let self = self else { return }
+            
             self.repositoryIconImage.image = image
         }
         
         viewModel?.ownerName.bindAndFire { [weak self] name in
             guard let self = self else { return }
+            
             self.ownerNameLabel.text = name
         }
         
         viewModel?.ownerAvatar.bindAndFire { [weak self] imageUrl in
             guard let self = self, let imageUrl = imageUrl else { return }
+            
             self.ownerAvatarImage.loadImage(at: imageUrl)
         }
         
         viewModel?.repositoryStars.bindAndFire { [weak self] starsCount in
             guard let self = self else { return }
+            
             self.repositoryStarsLabel.text = String(format: "%.01f", locale: Locale.current, starsCount ?? 0)
         }
         
         viewModel?.repositoryStars.bindAndFire { [weak self] starsCount in
             guard let self = self else { return }
+            
             self.repositoryStarsLabel.text = String(format: "%.01f", locale: Locale.current, starsCount ?? 0)
         }
         
         viewModel?.repositoryStar.bindAndFire { [weak self] image in
             guard let self = self else { return }
+            
             self.repositoryStarImage.image = image
         }
+        
+        viewModel?.isLoading.bindAndFire { [weak self] activityStatus in
+            guard let self = self, let activityStatus = activityStatus else { return }
             
+            if activityStatus {
+                self.indicatorView.startAnimating()
+            } else {
+                self.indicatorView.stopAnimating()
+            }
+        }
+        
+        viewModel?.propertiesAlpha.bindAndFire { [weak self] alpha in
+            guard let self = self, let alpha = alpha else { return }
+            
+            self.ownerAvatarImage.alpha = alpha
+            self.repositoryIconImage.alpha = alpha
+            self.repositoryStarImage.alpha = alpha
+            self.repositoryStarsLabel.alpha = alpha
+        }
+        
     }
 }
 
 //MARK: - Extension Contraints
 
-extension RepositoryCell {
+private extension RepositoryCell {
     
     private func setupContainerView() {
         contentView.addSubview(containerView)
         
         containerView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    private func setupActivityIndicataro() {
+        contentView.addSubview(indicatorView)
+        
+        indicatorView.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
     }
     

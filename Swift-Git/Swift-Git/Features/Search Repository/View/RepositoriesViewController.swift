@@ -3,6 +3,8 @@ import SnapKit
 
 final class RepositoriesViewController: UIViewController {
     
+    // MARK: Views
+
     private var tablewView: UITableView = {
         let table = UITableView()
         table.headerView(forSection: .zero)
@@ -59,6 +61,10 @@ final class RepositoriesViewController: UIViewController {
         setupBinds()
     }
     
+    //MARK: - Private Apis
+    
+    //MARK: Bind View
+    
     private func setupBinds() {
         
         viewModel.repositories.bind { [weak self] repositories in
@@ -73,6 +79,10 @@ final class RepositoriesViewController: UIViewController {
         }
     }
     
+    //MARK: - Private Actions
+    
+    //MARK: Refresh Controlls
+
     @objc private func handleRefreshControl() {
         viewModel.loadRepositories()
         
@@ -81,7 +91,14 @@ final class RepositoriesViewController: UIViewController {
         }
     }
     
+    //MARK: Loading actions
+
+    private func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= viewModel.numberOfRows()
+    }
 }
+
+//MARK: - TableView DataSource
 
 extension RepositoriesViewController: UITableViewDataSource {
     
@@ -92,14 +109,21 @@ extension RepositoriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? RepositoryCell else { fatalError("Unexpected Table View Cell") }
         
-        let repository = repositories[indexPath.row]
-        let viewModel = RepositoryCellViewModel(repository: repository)
-        cell.configure(viewModel: viewModel)
+        if isLoadingCell(for: indexPath) {
+            let viewModel = RepositoryCellViewModel(repository: .none)
+            cell.configure(viewModel: viewModel)
+        } else {
+            let repository = repositories[indexPath.row]
+            let viewModel = RepositoryCellViewModel(repository: repository)
+            cell.configure(viewModel: viewModel)
+        }
         
         return cell
     }
     
 }
+
+//MARK: - TableView DataSource Prefetching
 
 extension RepositoriesViewController: UITableViewDataSourcePrefetching {
     
@@ -110,12 +134,7 @@ extension RepositoriesViewController: UITableViewDataSourcePrefetching {
     }
 }
 
-private extension RepositoriesViewController {
-    
-    func isLoadingCell(for indexPath: IndexPath) -> Bool {
-        return indexPath.row >= viewModel.numberOfRows()
-    }
-}
+//MARK: - Extension Contraints
 
 private extension RepositoriesViewController {
     
