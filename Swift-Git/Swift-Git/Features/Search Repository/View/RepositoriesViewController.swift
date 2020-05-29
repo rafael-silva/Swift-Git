@@ -3,7 +3,6 @@ import SnapKit
 
 final class RepositoriesViewController: UIViewController {
     
-    
     private var tablewView: UITableView = {
         let table = UITableView()
         table.headerView(forSection: .zero)
@@ -45,19 +44,23 @@ final class RepositoriesViewController: UIViewController {
         super.viewDidLoad()
         
         tablewView.dataSource = self
+        tablewView.prefetchDataSource = self
+        
         tablewView.refreshControl = UIRefreshControl()
         tablewView.refreshControl?.addTarget(self, action:
             #selector(handleRefreshControl),
                                              for: .valueChanged)
-        
         view.backgroundColor = UIColor(red: 26/255, green: 92/255, blue: 246/255, alpha: 1)
         
         setupTableView()
         setupHeaderTitle()
+        
+        viewModel.loadRepositories()
         setupBinds()
     }
     
     private func setupBinds() {
+        
         viewModel.repositories.bind { [weak self] repositories in
             guard let self = self, let repositories = repositories else { return }
             self.repositories = repositories
@@ -66,7 +69,7 @@ final class RepositoriesViewController: UIViewController {
         
         viewModel.error.bind { [weak self] error in
             guard let self = self, let error = error else { return }
-            //            self.presentAlert(error, title: "Ops!")
+            self.presentAlert(error, title: "Ops!")
         }
     }
     
@@ -92,12 +95,29 @@ extension RepositoriesViewController: UITableViewDataSource {
         let repository = repositories[indexPath.row]
         let viewModel = RepositoryCellViewModel(repository: repository)
         cell.configure(viewModel: viewModel)
+        
         return cell
     }
     
 }
 
-extension RepositoriesViewController {
+extension RepositoriesViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if indexPaths.contains(where: isLoadingCell) {
+            viewModel.loadRepositories()
+        }
+    }
+}
+
+private extension RepositoriesViewController {
+    
+    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= viewModel.numberOfRows()
+    }
+}
+
+private extension RepositoriesViewController {
     
     private func setupTableView() {
         view.addSubview(tablewView)

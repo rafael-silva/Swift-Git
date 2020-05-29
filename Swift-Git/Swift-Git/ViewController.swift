@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let api: APIRepositoryProviderProtocol = API()
-        api.repositories(language: "swift", sort: "stars") { response in 
+        api.repositories(language: "swift", sort: "stars", page: 1) { response in 
              switch response {
              case .success(let value):
                 print(value)

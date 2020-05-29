@@ -95,7 +95,7 @@ class RepositoriesViewModelTests: QuickSpec {
 }
 
 private class APIRepositoryProviderSpy: APIRepositoryProviderProtocol {
-    
+ 
     private let state: RepositoriesViewModelTests.State
     var repository: RepositoryPayload?
     var error: ApiError
@@ -105,7 +105,7 @@ private class APIRepositoryProviderSpy: APIRepositoryProviderProtocol {
         self.error = error
     }
     
-    func repositories(language: String, sort: String, completion: @escaping (ReturnOutput<RepositoryPayload>) -> Void) {
+    func repositories(language: String, sort: String, page: Int, completion: @escaping (ReturnOutput<RepositoryPayload>) -> Void) {
         switch state {
         case .success:
             completion(.success(.dummy))
@@ -123,7 +123,7 @@ extension RepositoryPayload {
 
 extension ItemPayload {
     static var dummyItem: ItemPayload = {
-        return ItemPayload(id: 1, node_id: "ad3#$!s", name: "teste", full_name: "teste name", private: false, owner: OwnerPayload.dummyOwner, html_url: "google.com", description: "description teste", fork: false, url: "terra.com", created_at: "2020-05-20T10:35:05Z", updated_at: "2020-05-20T10:35:05Z", pushed_at: "2020-05-20T10:35:05Z", homepage: "homepage.com", size: 123, stargazers_count: 132, watchers_count: 13, language: "swiift", forks_count: 0, open_issues_count: 0, master_branch: "master", default_branch: "master", score: 1.2)
+        return ItemPayload(name: "teste", full_name: "teste name", owner: OwnerPayload.dummyOwner, score: 1.2)
     }()
 }
 

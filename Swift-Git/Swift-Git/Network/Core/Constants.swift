@@ -7,7 +7,7 @@ struct Constants {
         static let sort = "sort"
         static let q = "q"
         static let page = "page"
-
+        static let perPage = "per_page"
     }
     
     enum HttpHeaderField: String {
