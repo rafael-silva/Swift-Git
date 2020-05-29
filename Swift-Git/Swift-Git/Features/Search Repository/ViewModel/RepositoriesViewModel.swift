@@ -6,7 +6,8 @@ protocol RepositoriesViewModelProtocol {
     
     var isFetchInProgress: Bool { get }
     var currentPage: Int { get }
-    
+    var items: [Item] { get }
+   
     func numberOfRows() -> Int
     func loadRepositories()
 }
@@ -18,7 +19,6 @@ final class RepositoriesViewModel: RepositoriesViewModelProtocol {
     private let api: APIRepositoryProviderProtocol
     
     private(set) var currentPage = 1
-    
     private(set) var items: [Item] = [] {
         didSet {
             repositories.value = items
@@ -49,8 +49,8 @@ final class RepositoriesViewModel: RepositoriesViewModelProtocol {
                 self.items.append(contentsOf: Repository.init(from: output).items)
             case.failure(let error):
                 
-                self.error.value = error.description
                 self.isFetchInProgress = false
+                self.error.value = error.description
             }
         }
     }

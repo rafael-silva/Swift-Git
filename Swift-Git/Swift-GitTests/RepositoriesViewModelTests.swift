@@ -31,29 +31,30 @@ class RepositoriesViewModelTests: QuickSpec {
                 context("and the request was completed with repository") {
                    
                     it("then should bind repositories to presentation") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .success)
+                        sut_viewModel.loadRepositories()
                         
-                        let mock = Repository(totaCount: 1, items: [Item(name: "teste", fullName: "teste name", owner: Owner(login: "login", avatarUrl: URL(string: "avatar.com")!), score: 1.2)])
-                        expect(sut_viewModel.repository.value).to(equal(mock))
+                        let expectedResult = Repository(totaCount: 1, items: [Item(name: "teste", fullName: "teste name", owner: Owner(login: "login", avatarUrl: URL(string: "avatar.com")!), score: 1.2)])
+                        
+                        expect(sut_viewModel.repositories.value).to(equal(expectedResult.items))
                     }
                 }
                 
                 context("and return error 500") {
                     
                     it("then should bind error to presentantion") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .fail, error: .internalServerError)
+                        sut_viewModel.loadRepositories()
                         
-                        expect(sut_viewModel.error.value) == "Internal server error."
+                        expect(sut_viewModel.error.value).toEventually(equal("Internal server error."))
                     }
                 }
                 
                 context("and return error 409") {
                     
                     it("then should bind error to presentantion") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .fail, error: .conflict)
+                        sut_viewModel.loadRepositories()
                         
                         expect(sut_viewModel.error.value) == "Conflict error."
                     }
@@ -62,8 +63,8 @@ class RepositoriesViewModelTests: QuickSpec {
                 context("and return error 404") {
                     
                     it("then should bind error to presentantion") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .fail, error: .notFound)
+                        sut_viewModel.loadRepositories()
                         
                         expect(sut_viewModel.error.value) == "The not found failed."
                     }
@@ -72,8 +73,8 @@ class RepositoriesViewModelTests: QuickSpec {
                 context("and return error 403") {
                     
                     it("then should bind error to presentantion") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .fail, error: .forbidden)
+                        sut_viewModel.loadRepositories()
                         
                         expect(sut_viewModel.error.value) == "Forbidden error."
                     }
@@ -82,8 +83,8 @@ class RepositoriesViewModelTests: QuickSpec {
                 context("and return unknown server error") {
                     
                     it("then should bind error to presentantion") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .fail, error: .unknownError("Unknown server error."))
+                        sut_viewModel.loadRepositories()
                         
                         expect(sut_viewModel.error.value) == "Unknown server error."
                     }

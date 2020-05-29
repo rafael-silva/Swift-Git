@@ -151,9 +151,9 @@ final class RepositoryCell: UITableViewCell {
         }
         
         viewModel?.repositoryStars.bindAndFire { [weak self] starsCount in
-            guard let self = self else { return }
+            guard let self = self, let starCount = starsCount else { return }
             
-            self.repositoryStarsLabel.text = String(format: "%.01f", locale: Locale.current, starsCount ?? 0)
+            self.repositoryStarsLabel.text = String(format: "%.1f", starCount)
         }
         
         viewModel?.repositoryStar.bindAndFire { [weak self] image in

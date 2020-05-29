@@ -11,22 +11,39 @@ class RepositoryCellViewModelTests: QuickSpec {
         
         describe("MoviesUpcomingPresenter") {
             
-            func setup(repository: Item) {
+            func setup(repository: Item?) {
                 sut_viewModel = RepositoryCellViewModel(repository: repository)
             }
             
             describe("when reposytory cell was attached") {
                 
-                beforeEach {
-                    setup(repository: Item.dummy)
+                context("and have a repository") {
+                    beforeEach {
+                        setup(repository: Item.dummy)
+                    }
+                    
+                    it("then should bind properties to presentation") {
+                        expect(sut_viewModel.ownerName.value) == "login"
+                        expect(sut_viewModel.repositoryStars.value) == 1.2
+                        expect(sut_viewModel.repositoryTitle.value) == "teste name"
+                        expect(sut_viewModel.repositoryIcon.value) == #imageLiteral(resourceName: "repositoryIcon")
+                        expect(sut_viewModel.isLoading.value) == false
+                        expect(sut_viewModel.propertiesAlpha.value) == 1
+                    }
                 }
                 
-                it("then should bind properties to presentation") {
-                    expect(sut_viewModel.ownerName.value) == "login"
-                    expect(sut_viewModel.repositoryStars.value) == 1.2
-                    expect(sut_viewModel.repositoryTitle.value) == "teste name"
-                    expect(sut_viewModel.repositoryIcon.value) == #imageLiteral(resourceName: "repositoryIcon")
+                context("and have a repository") {
+                    beforeEach {
+                        setup(repository: .none)
+                    }
+                    
+                    it("then should bind properties to presentation") {
+                        expect(sut_viewModel.isLoading.value) == true
+                        expect(sut_viewModel.propertiesAlpha.value) == 0
+                    }
                 }
+                
+                
             }
         }
     }
