@@ -1,7 +1,8 @@
 import UIKit
-//import CommonStack
 
 final class RepositoryCell: UITableViewCell {
+    
+    // MARK: Views
     
     private var containerView: UIView = {
         let view = UIView()
@@ -10,7 +11,7 @@ final class RepositoryCell: UITableViewCell {
         view.clipsToBounds = true
         return view
     }()
-        
+    
     private var repositoryTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -59,8 +60,9 @@ final class RepositoryCell: UITableViewCell {
         return imageView
     }()
     
+    private var indicatorView = UIActivityIndicatorView()
     
-    private var viewModel: RepositoryCellViewModel?
+    private var viewModel: RepositoryCellViewModelProtocol?
     
     //MARK: Init
     
@@ -70,9 +72,9 @@ final class RepositoryCell: UITableViewCell {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         selectionStyle = .none
-
-        setupContainerView()
         
+        setupContainerView()
+        setupActivityIndicataro()
         setupIconImage()
         setupRepositoryTitleLabel()
         setupOwnerAvatarImage()
@@ -87,65 +89,96 @@ final class RepositoryCell: UITableViewCell {
     }
     
     //MARK: Override Apis
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         repositoryIconImage.image = nil
+        repositoryStarsLabel.text = nil
+        ownerNameLabel.text = nil
+        repositoryIconImage.image = nil
         ownerAvatarImage.cancelImageLoad()
     }
-        
-    //MARK: Public Apis
+    
+    //MARK: - Public Apis
+    
+    //MARK: Configure views
 
-    func configure(viewModel: RepositoryCellViewModel) {
+    func configure(viewModel: RepositoryCellViewModelProtocol) {
         self.viewModel = viewModel
-        
         setupBinds()
     }
-
-    //MARK: Private Apis
     
+    //MARK: - Private Apis
+    
+    //MARK: - Binds
+
     private func setupBinds() {
         
         viewModel?.repositoryTitle.bindAndFire { [weak self] title in
             guard let self = self else { return }
+            
             self.repositoryTitleLabel.text = title
         }
         
         viewModel?.repositoryIcon.bindAndFire { [weak self] image in
             guard let self = self else { return }
+            
             self.repositoryIconImage.image = image
         }
         
         viewModel?.ownerName.bindAndFire { [weak self] name in
             guard let self = self else { return }
+            
             self.ownerNameLabel.text = name
         }
         
         viewModel?.ownerAvatar.bindAndFire { [weak self] imageUrl in
-            guard let self = self else { return }
-            guard let imageUrl = imageUrl else { return }
+            guard let self = self, let imageUrl = imageUrl else { return }
+            
             self.ownerAvatarImage.loadImage(at: imageUrl)
         }
         
         viewModel?.repositoryStars.bindAndFire { [weak self] starsCount in
             guard let self = self else { return }
-            self.repositoryStarsLabel.text = String(format: "%.01f", locale: Locale.current, starsCount!)
+            
+            self.repositoryStarsLabel.text = String(format: "%.01f", locale: Locale.current, starsCount ?? 0)
         }
         
         viewModel?.repositoryStars.bindAndFire { [weak self] starsCount in
-              guard let self = self else { return }
-              self.repositoryStarsLabel.text = String(format: "%.01f", locale: Locale.current, starsCount!)
-          }
+            guard let self = self, let starCount = starsCount else { return }
+            
+            self.repositoryStarsLabel.text = String(format: "%.1f", starCount)
+        }
         
         viewModel?.repositoryStar.bindAndFire { [weak self] image in
             guard let self = self else { return }
+            
             self.repositoryStarImage.image = image
+        }
+        
+        viewModel?.isLoading.bindAndFire { [weak self] activityStatus in
+            guard let self = self, let activityStatus = activityStatus else { return }
+            
+            if activityStatus {
+                self.indicatorView.startAnimating()
+            } else {
+                self.indicatorView.stopAnimating()
+            }
+        }
+        
+        viewModel?.propertiesAlpha.bindAndFire { [weak self] alpha in
+            guard let self = self, let alpha = alpha else { return }
+            
+            self.ownerAvatarImage.alpha = alpha
+            self.repositoryIconImage.alpha = alpha
+            self.repositoryStarImage.alpha = alpha
+            self.repositoryStarsLabel.alpha = alpha
         }
         
     }
@@ -153,13 +186,21 @@ final class RepositoryCell: UITableViewCell {
 
 //MARK: - Extension Contraints
 
-extension RepositoryCell {
+private extension RepositoryCell {
     
     private func setupContainerView() {
         contentView.addSubview(containerView)
-
+        
         containerView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    private func setupActivityIndicataro() {
+        contentView.addSubview(indicatorView)
+        
+        indicatorView.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
     }
     
@@ -172,10 +213,10 @@ extension RepositoryCell {
             $0.bottom.equalTo(-120)
         }
     }
-
+    
     private func setupRepositoryTitleLabel() {
         containerView.addSubview(repositoryTitleLabel)
-
+        
         repositoryTitleLabel.snp.makeConstraints {
             $0.top.equalTo(18)
             $0.leading.equalTo(repositoryIconImage.snp.trailing).offset(10)
@@ -185,7 +226,7 @@ extension RepositoryCell {
     
     private func setupRepositoryStarsImage() {
         containerView.addSubview(repositoryStarImage)
-
+        
         repositoryStarImage.snp.makeConstraints {
             $0.leading.equalTo(ownerNameLabel.snp.trailing).offset(25)
             $0.centerY.equalTo(ownerNameLabel)
@@ -195,7 +236,7 @@ extension RepositoryCell {
     
     private func setupRepositoryStarsLabel() {
         containerView.addSubview(repositoryStarsLabel)
-
+        
         repositoryStarsLabel.snp.makeConstraints {
             $0.leading.equalTo(repositoryStarImage.snp.trailing).offset(5)
             $0.centerY.equalTo(repositoryStarImage)
@@ -213,7 +254,7 @@ extension RepositoryCell {
     
     private func setupOwnerAvatarImage() {
         containerView.addSubview(ownerAvatarImage)
-
+        
         ownerAvatarImage.snp.makeConstraints {
             $0.trailing.equalTo(-15)
             $0.bottom.equalTo(-18)

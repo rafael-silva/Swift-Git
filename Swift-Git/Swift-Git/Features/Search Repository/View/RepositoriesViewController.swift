@@ -3,7 +3,8 @@ import SnapKit
 
 final class RepositoriesViewController: UIViewController {
     
-    
+    // MARK: Views
+
     private var tablewView: UITableView = {
         let table = UITableView()
         table.headerView(forSection: .zero)
@@ -45,19 +46,27 @@ final class RepositoriesViewController: UIViewController {
         super.viewDidLoad()
         
         tablewView.dataSource = self
+        tablewView.prefetchDataSource = self
+        
         tablewView.refreshControl = UIRefreshControl()
         tablewView.refreshControl?.addTarget(self, action:
             #selector(handleRefreshControl),
                                              for: .valueChanged)
-        
         view.backgroundColor = UIColor(red: 26/255, green: 92/255, blue: 246/255, alpha: 1)
         
         setupTableView()
         setupHeaderTitle()
+        
+        viewModel.loadRepositories()
         setupBinds()
     }
     
+    //MARK: - Private Apis
+    
+    //MARK: Bind View
+    
     private func setupBinds() {
+        
         viewModel.repositories.bind { [weak self] repositories in
             guard let self = self, let repositories = repositories else { return }
             self.repositories = repositories
@@ -66,10 +75,14 @@ final class RepositoriesViewController: UIViewController {
         
         viewModel.error.bind { [weak self] error in
             guard let self = self, let error = error else { return }
-            //            self.presentAlert(error, title: "Ops!")
+            self.presentAlert(error, title: "Ops!")
         }
     }
     
+    //MARK: - Private Actions
+    
+    //MARK: Refresh Controlls
+
     @objc private func handleRefreshControl() {
         viewModel.loadRepositories()
         
@@ -78,7 +91,14 @@ final class RepositoriesViewController: UIViewController {
         }
     }
     
+    //MARK: Loading actions
+
+    private func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= viewModel.numberOfRows()
+    }
 }
+
+//MARK: - TableView DataSource
 
 extension RepositoriesViewController: UITableViewDataSource {
     
@@ -89,15 +109,34 @@ extension RepositoriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? RepositoryCell else { fatalError("Unexpected Table View Cell") }
         
-        let repository = repositories[indexPath.row]
-        let viewModel = RepositoryCellViewModel(repository: repository)
-        cell.configure(viewModel: viewModel)
+        if isLoadingCell(for: indexPath) {
+            let viewModel = RepositoryCellViewModel(repository: .none)
+            cell.configure(viewModel: viewModel)
+        } else {
+            let repository = repositories[indexPath.row]
+            let viewModel = RepositoryCellViewModel(repository: repository)
+            cell.configure(viewModel: viewModel)
+        }
+        
         return cell
     }
     
 }
 
-extension RepositoriesViewController {
+//MARK: - TableView DataSource Prefetching
+
+extension RepositoriesViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if indexPaths.contains(where: isLoadingCell) {
+            viewModel.loadRepositories()
+        }
+    }
+}
+
+//MARK: - Extension Contraints
+
+private extension RepositoriesViewController {
     
     private func setupTableView() {
         view.addSubview(tablewView)

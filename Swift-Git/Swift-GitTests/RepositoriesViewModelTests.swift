@@ -31,29 +31,30 @@ class RepositoriesViewModelTests: QuickSpec {
                 context("and the request was completed with repository") {
                    
                     it("then should bind repositories to presentation") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .success)
+                        sut_viewModel.loadRepositories()
                         
-                        let mock = Repository(totaCount: 1, items: [Item(name: "teste", fullName: "teste name", owner: Owner(login: "login", avatarUrl: URL(string: "avatar.com")!), score: 1.2)])
-                        expect(sut_viewModel.repository.value).to(equal(mock))
+                        let expectedResult = Repository(totaCount: 1, items: [Item(name: "teste", fullName: "teste name", owner: Owner(login: "login", avatarUrl: URL(string: "avatar.com")!), score: 1.2)])
+                        
+                        expect(sut_viewModel.repositories.value).to(equal(expectedResult.items))
                     }
                 }
                 
                 context("and return error 500") {
                     
                     it("then should bind error to presentantion") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .fail, error: .internalServerError)
+                        sut_viewModel.loadRepositories()
                         
-                        expect(sut_viewModel.error.value) == "Internal server error."
+                        expect(sut_viewModel.error.value).toEventually(equal("Internal server error."))
                     }
                 }
                 
                 context("and return error 409") {
                     
                     it("then should bind error to presentantion") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .fail, error: .conflict)
+                        sut_viewModel.loadRepositories()
                         
                         expect(sut_viewModel.error.value) == "Conflict error."
                     }
@@ -62,8 +63,8 @@ class RepositoriesViewModelTests: QuickSpec {
                 context("and return error 404") {
                     
                     it("then should bind error to presentantion") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .fail, error: .notFound)
+                        sut_viewModel.loadRepositories()
                         
                         expect(sut_viewModel.error.value) == "The not found failed."
                     }
@@ -72,8 +73,8 @@ class RepositoriesViewModelTests: QuickSpec {
                 context("and return error 403") {
                     
                     it("then should bind error to presentantion") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .fail, error: .forbidden)
+                        sut_viewModel.loadRepositories()
                         
                         expect(sut_viewModel.error.value) == "Forbidden error."
                     }
@@ -82,8 +83,8 @@ class RepositoriesViewModelTests: QuickSpec {
                 context("and return unknown server error") {
                     
                     it("then should bind error to presentantion") {
-                        sut_viewModel.loadRepositories()
                         setup(state: .fail, error: .unknownError("Unknown server error."))
+                        sut_viewModel.loadRepositories()
                         
                         expect(sut_viewModel.error.value) == "Unknown server error."
                     }
@@ -95,7 +96,7 @@ class RepositoriesViewModelTests: QuickSpec {
 }
 
 private class APIRepositoryProviderSpy: APIRepositoryProviderProtocol {
-    
+ 
     private let state: RepositoriesViewModelTests.State
     var repository: RepositoryPayload?
     var error: ApiError
@@ -105,7 +106,7 @@ private class APIRepositoryProviderSpy: APIRepositoryProviderProtocol {
         self.error = error
     }
     
-    func repositories(language: String, sort: String, completion: @escaping (ReturnOutput<RepositoryPayload>) -> Void) {
+    func repositories(language: String, sort: String, page: Int, completion: @escaping (ReturnOutput<RepositoryPayload>) -> Void) {
         switch state {
         case .success:
             completion(.success(.dummy))
@@ -123,7 +124,7 @@ extension RepositoryPayload {
 
 extension ItemPayload {
     static var dummyItem: ItemPayload = {
-        return ItemPayload(id: 1, node_id: "ad3#$!s", name: "teste", full_name: "teste name", private: false, owner: OwnerPayload.dummyOwner, html_url: "google.com", description: "description teste", fork: false, url: "terra.com", created_at: "2020-05-20T10:35:05Z", updated_at: "2020-05-20T10:35:05Z", pushed_at: "2020-05-20T10:35:05Z", homepage: "homepage.com", size: 123, stargazers_count: 132, watchers_count: 13, language: "swiift", forks_count: 0, open_issues_count: 0, master_branch: "master", default_branch: "master", score: 1.2)
+        return ItemPayload(name: "teste", full_name: "teste name", owner: OwnerPayload.dummyOwner, score: 1.2)
     }()
 }
 
