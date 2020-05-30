@@ -19,8 +19,8 @@ Arquitetura:
  
  
   ### OBS:
-    Para rodar o projeto basta clonar ou baixar como zip, acessar a pasta raiz e rodar pod install 
-
+    1 - Para rodar o projeto basta clonar ou baixar como zip, acessar a pasta raiz e rodar pod install 
+    2 - Para rodar as lanes basta acessar a branch **feature-fastlanes**
 
   
   
