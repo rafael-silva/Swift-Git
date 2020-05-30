@@ -83,8 +83,10 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+fastlane/report.xml
 
 Swift-Git/html
+Swift-Git/fastlane/report.xml
 Swift-Git/xcov_output
 Swift-Git/Gemfile.lockfile
 Swift-Git/fastlane/Pluginfile
