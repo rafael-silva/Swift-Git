@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='Swift-GitTests.xctest' tests='8' failures='0'>
+  <testsuite name='Swift_GitTests.RepositoriesViewModelTests' tests='6' failures='0'>
+    <testcase classname='Swift_GitTests.RepositoriesViewModelTests' name='MoviesUpcomingPresenter__when_call_fetch_repositories_called__and_the_request_was_completed_with_repository__then_should_bind_repositories_to_presentation' time='0.006'/>
+    <testcase classname='Swift_GitTests.RepositoriesViewModelTests' name='MoviesUpcomingPresenter__when_call_fetch_repositories_called__and_return_error_500__then_should_bind_error_to_presentantion' time='0.002'/>
+    <testcase classname='Swift_GitTests.RepositoriesViewModelTests' name='MoviesUpcomingPresenter__when_call_fetch_repositories_called__and_return_error_409__then_should_bind_error_to_presentantion' time='0.001'/>
+    <testcase classname='Swift_GitTests.RepositoriesViewModelTests' name='MoviesUpcomingPresenter__when_call_fetch_repositories_called__and_return_error_404__then_should_bind_error_to_presentantion' time='0.001'/>
+    <testcase classname='Swift_GitTests.RepositoriesViewModelTests' name='MoviesUpcomingPresenter__when_call_fetch_repositories_called__and_return_error_403__then_should_bind_error_to_presentantion' time='0.001'/>
+    <testcase classname='Swift_GitTests.RepositoriesViewModelTests' name='MoviesUpcomingPresenter__when_call_fetch_repositories_called__and_return_unknown_server_error__then_should_bind_error_to_presentantion' time='0.001'/>
+  </testsuite>
+  <testsuite name='Swift_GitTests.RepositoryCellViewModelTests' tests='2' failures='0'>
+    <testcase classname='Swift_GitTests.RepositoryCellViewModelTests' name='MoviesUpcomingPresenter__when_reposytory_cell_was_attached__and_have_a_repository__then_should_bind_properties_to_presentation' time='0.013'/>
+    <testcase classname='Swift_GitTests.RepositoryCellViewModelTests' name='MoviesUpcomingPresenter__when_reposytory_cell_was_attached__and_have_a_repository__then_should_bind_properties_to_presentation_2' time='0.001'/>
+  </testsuite>
+</testsuites>

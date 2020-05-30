@@ -1,0 +1,59 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+
+  # SCREENSHOTS
+
+  desc "Tirar screenshots"
+	lane :screenshot do
+		snapshot
+	end
+
+  # CODE COVERAGE
+
+  desc "Test an measure code coverage"
+  lane :codecoverage_xcov do
+    run_tests(devices: ["iPhone 11"])
+    xcov(
+       workspace: "Swift-Git.xcworkspace",
+      scheme: "Swift-Git",
+      output_directory: "xcov_output"
+    )
+  end
+
+  lane :generate_xcov_file do
+  sh(". trigger_xcov.sh ")
+  end
+
+  lane :codecoverage_slather do
+    slather(
+      #build_directory: "slather_output", caso o derived_data tenha sido alterado
+      scheme: "Swift-Git",
+      proj: "Swift-Git.xcodeproj",
+      workspace: "Swift-Git.xcworkspace",
+      html: true,
+      show: true,
+    )
+  end
+
+  error do |lane, exception|
+    puts "something happened: #{exception.to_s}"
+    puts "stacktrace: #{exception.backtrace}"
+  end
+
+end
