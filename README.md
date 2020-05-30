@@ -10,7 +10,7 @@ Arquitetura:
  
  ### Detalhes
  
- Projeto desenvolvido com base na arquitetura MVVM, podendo facilmente ser escalado, como bibiotecas foram utilizados Quick/Nimble para implementação dos testes, Alamofire para camada de networking e SnapKit para escrita de constraints.
+ Projeto desenvolvido com base na arquitetura MVVM, podendo facilmente ser escalado, como bibliotecas foram utilizados Quick/Nimble para implementação dos testes, Alamofire para camada de networking e SnapKit para escrita de constraints.
  
  
  ### Exemplo:
