@@ -11,8 +11,6 @@
 		4795BD28CE96E0F51F0140BE /* Pods_Swift_Git_Swift_GitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC5C7A3E88BD640073E6F65 /* Pods_Swift_Git_Swift_GitTests.framework */; };
 		F530D2F22480022A00D4FB5B /* RepositoryCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530D2F12480022A00D4FB5B /* RepositoryCellViewModelTests.swift */; };
 		F5B5CD68247E8A6D009E1061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CD67247E8A6D009E1061 /* AppDelegate.swift */; };
-		F5B5CD6C247E8A6D009E1061 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CD6B247E8A6D009E1061 /* ViewController.swift */; };
-		F5B5CD6F247E8A6D009E1061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5B5CD6D247E8A6D009E1061 /* Main.storyboard */; };
 		F5B5CD71247E8A6E009E1061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5B5CD70247E8A6E009E1061 /* Assets.xcassets */; };
 		F5B5CD74247E8A6E009E1061 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5B5CD72247E8A6E009E1061 /* LaunchScreen.storyboard */; };
 		F5B5CD91247E96C3009E1061 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B5CD90247E96C2009E1061 /* Typealias.swift */; };
@@ -61,8 +59,6 @@
 		F530D2F12480022A00D4FB5B /* RepositoryCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCellViewModelTests.swift; sourceTree = "<group>"; };
 		F5B5CD64247E8A6D009E1061 /* Swift-Git.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-Git.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5B5CD67247E8A6D009E1061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F5B5CD6B247E8A6D009E1061 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F5B5CD6E247E8A6D009E1061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F5B5CD70247E8A6E009E1061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5B5CD73247E8A6E009E1061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5B5CD75247E8A6E009E1061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -171,8 +167,6 @@
 				F5B5CD8B247E9649009E1061 /* Network */,
 				F5B5CD8A247E8B18009E1061 /* Resources */,
 				F5B5CD89247E8AC5009E1061 /* AppDelegate */,
-				F5B5CD6B247E8A6D009E1061 /* ViewController.swift */,
-				F5B5CD6D247E8A6D009E1061 /* Main.storyboard */,
 			);
 			path = "Swift-Git";
 			sourceTree = "<group>";
@@ -208,7 +202,6 @@
 		F5B5CD8B247E9649009E1061 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				F5B5CD8F247E9686009E1061 /* Protocol */,
 				F5B5CD8E247E967B009E1061 /* Response Models */,
 				F5B5CD8D247E9674009E1061 /* Clients */,
 				F5B5CD8C247E9667009E1061 /* Core */,
@@ -244,13 +237,6 @@
 				F5B5CDA2247EA7C0009E1061 /* OwnerPayload.swift */,
 			);
 			path = "Response Models";
-			sourceTree = "<group>";
-		};
-		F5B5CD8F247E9686009E1061 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		F5B5CDA4247ECF69009E1061 /* Features */ = {
@@ -447,7 +433,6 @@
 			files = (
 				F5B5CD74247E8A6E009E1061 /* LaunchScreen.storyboard in Resources */,
 				F5B5CD71247E8A6E009E1061 /* Assets.xcassets in Resources */,
-				F5B5CD6F247E8A6D009E1061 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,7 +544,6 @@
 				F5B5CDB6247ED296009E1061 /* Item.swift in Sources */,
 				F5B5CDB0247ED117009E1061 /* Dynamic.swift in Sources */,
 				F5B5CD97247E9768009E1061 /* APIRouter.swift in Sources */,
-				F5B5CD6C247E8A6D009E1061 /* ViewController.swift in Sources */,
 				F5B5CD93247E96E1009E1061 /* APIError.swift in Sources */,
 				F5B5CD91247E96C3009E1061 /* Typealias.swift in Sources */,
 				F5B5CDCB247F02BD009E1061 /* ImageLoader.swift in Sources */,
@@ -594,14 +578,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F5B5CD6D247E8A6D009E1061 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F5B5CD6E247E8A6D009E1061 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F5B5CD72247E8A6E009E1061 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -732,7 +708,8 @@
 			baseConfigurationReference = 6BDF4A2CEFA4CCDDEFD546DD /* Pods-Swift-Git.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Swift-Git/Resources/Info.plist";
 				INFOPLIST_PREPROCESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -742,6 +719,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silva.rafael.Swift-Git";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -752,7 +730,8 @@
 			baseConfigurationReference = 75E43CFF1B0EFB311A228E26 /* Pods-Swift-Git.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Swift-Git/Resources/Info.plist";
 				INFOPLIST_PREPROCESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -762,6 +741,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silva.rafael.Swift-Git";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
