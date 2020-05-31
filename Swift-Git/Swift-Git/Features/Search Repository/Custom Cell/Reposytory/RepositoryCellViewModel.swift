@@ -29,7 +29,10 @@ final class RepositoryCellViewModel: RepositoryCellViewModelProtocol {
             repositoryTitle.value = repository.fullName
             repositoryStars.value = Double(repository.score)
             ownerName.value = repository.owner.login
-            ownerAvatar.value = repository.owner.avatarUrl.absoluteURL
+            
+            guard let avatarUrl = URL(string: repository.owner.avatarUrl) else { return }
+            ownerAvatar.value = avatarUrl
+            
         } else {
             isLoading.value = true
             propertiesAlpha.value = 0
